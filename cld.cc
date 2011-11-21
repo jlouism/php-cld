@@ -200,6 +200,7 @@ PHPAPI int cld_detect_language(zval **result, char *text, int text_len, int is_p
 		add_assoc_string(detail, "code", (char *)ExtLanguageCode(language), 1);
 		add_assoc_bool(detail, "reliable", reliable);
 		add_assoc_long(detail, "bytes", bytes);
+        add_assoc_long(detail, "id", language);
 		add_next_index_zval(*result, detail);
 	}
 
@@ -314,8 +315,8 @@ PHP_FUNCTION(cld_detect)
 {
 	int is_plain_text = 1,
 		include_extended_languages = 1,
-		top_level_domain_hint_len,
-		language_hint_name_len,
+		top_level_domain_hint_len = 0,
+		language_hint_name_len = 0,
 		text_len;
 
 	long encoding_hint = -1;
