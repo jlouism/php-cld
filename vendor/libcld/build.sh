@@ -5,6 +5,10 @@ LDFLAGS=-L.
 CC=g++
 AR=ar
 
+if [ "$(gcc -dumpversion)" > "5.0" ]; then
+  CFLAGS="$CFLAGS -Wno-narrowing"
+fi
+
 rm -f *.o
 rm -f libcld.a
 
